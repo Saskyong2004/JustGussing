@@ -1,0 +1,248 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+        background: 
+        linear-gradient(135deg, #90d7f1, #e3f4f7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #fff;
+    text-align: center;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 600px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    font-family: 'serif',
+cursive;
+  font-weight: 800;
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #f4f9f9;
+}
+
+.choices {
+    display: flex;
+    justify-content: center;
+    gap: 40px; /* More space between buttons */
+    margin-bottom: 20px;
+}
+
+.choice-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 2px solid transparent;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    font-weight: bold;
+}
+
+.choice-btn:active img {
+    transform: scale(1.1); /* Slight zoom-in effect when tapped */
+}
+
+.choice-btn img {
+    width: 300px; /* Bigger image size */
+    height: auto;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease; /* Smooth animation on hover */
+}
+
+.choice-btn:hover img {
+    transform: scale(1.1); /* Slight zoom-in on hover */
+}
+
+.choice-btn:hover {
+    transform: scale(1.05); /* Slight button zoom-in on hover */
+    border-color: #fff;
+}
+
+.result {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.correct {
+    color: #28a745;
+}
+
+.wrong {
+    color: #dc3545;
+}
+
+.celebration {
+    display: none;
+    font-size: 2rem;
+    color: #080808;
+    margin-top: 10px;
+    animation: pop 1s ease-out;
+}
+
+.logo {
+    position: absolute; /* Allows for positioning outside the normal flow */
+    top: 5px; /* Adjust distance from the top */
+    left: 0px; /* Adjust distance from the left */
+    width: 80px; /* Set a fixed width for the logo */
+    height: auto; /* Maintain aspect ratio */
+    z-index: 10; /* Ensure the logo is above other elements */
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font size: 1.8rem;
+
+    }
+    .choice-btn {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .choices {
+        flex-direction: 
+column;
+        gap: 20px;
+    }
+
+    .result {
+        font-size: 1.2rem;
+    }
+
+    .celebration {
+        font-size: 1.5rem;
+    }
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Popup styling */
+.popup {
+    display: none; /* Hidden initially */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000; /* Ensure it appears on top */
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 5px; /* Reduced padding */
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    max-width: 90%; /* Maximum width for the popup */
+    max-height: 90%; /* Maximum height to prevent overflow */
+}
+
+.popup img {
+    width: 100%; /* Automatically scale image to fit container */
+    height: auto;
+    border: 3px solid lightblue; /* Border color and thickness */
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 600px) {
+    .popup {
+        width: 95vw; /* Smaller max width for small screens */
+        max-height: 95vh; /* Maintain aspect ratio */
+        padding: 1px; /* Further reduce padding */
+    }
+
+    .popup img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+.popup.show {
+    display: block; /* Display popup when answer is selected */
+}
+
+/* Confetti Effect */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    opacity: 0.8;
+    animation: fall linear infinite;
+    top: 0;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Full-screen loader */
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff; /* White background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's above everything */
+    transition: opacity 1s ease; /* Fade-out effect */
+}
+
+/* Logo inside the loader */
+.loader-logo {
+    width: 180px; /* Adjust size as needed */
+    height: auto;
+    opacity: 0;
+    animation: fadeIn 2s forwards; /* Fade-in animation for the logo */
+}
+
+/* Fade-in keyframe animation */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* When hiding the loader */
+#loader.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Ensure the main content is hidden initially */
+#main-content {
+    display: none;
+}
+
+

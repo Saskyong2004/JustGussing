@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose the Sunglass</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" type="x-icon" href="lenslogo2.png">
+<link href="https://fonts.googleapis.com/css2?family=New+Tegomin&family=Poppins&family=Rubik+Bubbles&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="loader">
+        <img src="lenslogo.png" alt="Lenskart Logo" class="loader-logo">
+    </div>
+    
+    <img src="lenslogo.png" alt="Logo" class="logo"> 
+    <div class="container" style="display: none;" id="main-content">
+        <h1>Guess which Glasses I got!!</h1>
+        
+        <div class="choices">
+            <button class="choice-btn" onclick="checkAnswer('blue')">
+                <img src="blue.png" alt="Blue Sunglass">
+                Blue
+            </button>
+            <button class="choice-btn" onclick="checkAnswer('grey')">
+                <img src="grey.png" alt="Grey Sunglass">
+                Grey
+            </button>
+            <button class="choice-btn" onclick="checkAnswer('transparent')">
+                <img src="transparent.png" alt="Transparent Sunglass">
+                Transparent
+            </button>
+        </div>
+
+        <div class="result" id="result"></div>
+        <div class="celebration" id="celebration">🎉 Perfect! You got it 😂👍!! 🎉</div>
+
+    <!-- Popup image for the original sunglass -->
+    <div class="popup" id="popup-image">
+        <img src="pic1.png" alt="Original Sunglass" id="sunglass-popup">
+    </div>
+
+</div>
+    <script src="script.js"></script>
+    <script>
+    window.onload = function() {
+    setTimeout(function() {
+        // Fade out the loader
+        document.getElementById('loader').classList.add('hidden');
+
+        // Show the main content after loader fades out
+        setTimeout(function() {
+            document.getElementById('loader').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+        }, 1000); // Match the fade-out transition time
+    }, 2000); // Time the loader shows (2 seconds here)
+};
+</script>
+</body>
+</html>
